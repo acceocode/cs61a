@@ -16,3 +16,26 @@
 
 (display (squares '(2 3 4 5))) 
 ```
+
+<br>
+
+3.
+```scheme
+(define (switch sentence)
+    (define (recurse sentence first?)
+        (if (null? sentence) 
+            sentence
+            (cons (convert (car sentence) first?) (recurse (cdr sentence) #f))))
+    (define (convert word first?)
+        (let ((word-str (symbol->string word)))
+             (cond ((string-ci=? word-str "me") 'you)
+                  ((string-ci=? word-str "i") 'you)
+                ((and (string-ci=? word-str "you") first?) 'i)
+                ((string-ci=? word-str "you") 'me)
+                (else word-str))))
+    (recurse sentence #t))
+
+(display (switch '(You told me that I should wake you up))) 
+(newline)
+(display '(i told you that you should wake me up))
+```
