@@ -6,6 +6,13 @@
 
 2.
 ```scheme
-(define squares '(2 3 4 5)
-  )
+(define (squares numbers)
+    (if (null? numbers) 
+        numbers
+        (cons (square (car numbers)) (squares (cdr numbers)))))
+    
+(define (square x)
+    (* x x))
+
+(display (squares '(2 3 4 5))) 
 ```
